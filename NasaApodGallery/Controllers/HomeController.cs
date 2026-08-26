@@ -1,24 +1,23 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using NasaApodGallery.Models;
+using NasaApodGallery.Services;
 
 namespace NasaApodGallery.Controllers;
-
 public class HomeController : Controller
 {
-    public IActionResult Index()
+    private readonly NasaApodService _nasaApodService;
+
+    public HomeController(NasaApodService nasaApodService)
     {
-        return View();
+        _nasaApodService = nasaApodService;
     }
 
-    public IActionResult Privacy()
+    public async Task<IActionResult> Index()
     {
-        return View();
-    }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        var apods = await _nasaApodService.GetApodRangesAsync("2026-08-20", "2026-08-25");
+
+        return View(apods);
     }
+    
 }
