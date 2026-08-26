@@ -20,7 +20,7 @@ namespace NasaApodGallery.Services
           // Step 1: check if this date already exists
             var checkCmd = new SqlCommand(
                 "SELECT COUNT(*) FROM ApodEntries WHERE ApodDate = @ApodDate", conn);
-            checkCmd.Parameters.AddWithValue("@ApodDate", apod.Date);
+            checkCmd.Parameters.AddWithValue("@ApodDate", apod.ApodDate);
 
             int existingCount = (int)checkCmd.ExecuteScalar();
 
