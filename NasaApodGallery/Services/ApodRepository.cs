@@ -42,5 +42,39 @@ namespace NasaApodGallery.Services
 
     insertCmd.ExecuteNonQuery();
 }
+   
+
+   public List<ApodModel> GetAllApods()
+      {
+         var apods = new List<ApodModel>();
+
+         using var conn = new SqlConnection(_connectionString);
+         conn.Open();
+
+         var selectCmd = new SqlCommand ("SELECT Id, ApodDate, Title, Explanation, Url, MediaType, ServiceVersion, SavedAt FROM ApodEntries ORDER BY ApodDate DESC", conn);
+ 
+         using var reader = selectCmd.ExecuteReader();
+
+         while (reader.Read())
+         {
+             var apod = new ApodModel
+             {
+                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
+               ApodDate = reader.GetDateTime(reader.GetOrdinal("ApodDate")),
+               Title = reader.GetString(reader.GetOrdinal("Title")),
+               Explanation = reader.GetString(reader.GetOrdinal("Explanation")),
+               Url = reader.GetString(reader.GetOrdinal("Url")),
+               MediaType = reader.GetString(reader.GetOrdinal("MediaType")),
+               ServiceVersion = reader.IsDBNull(reader.GetOrdinal("ServiceVersion")) ? null : reader.GetString(reader.GetOrdinal("ServiceVersion")),
+               SavedAt = reader.GetDateTime(reader.GetOrdinal("SavedAt"))
+             };
+
+             apods.Add(apod);
+         }
+
+         return apods;
+      }
+
    }
+
 }

@@ -16,8 +16,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        // temporary: still returns empty for now, Step 6 will make this read from DB
-        return View(new List<ApodModel>());
+        var apods = _apodRepository.GetAllApods();
+        return View(apods);
     }
 
     public async Task<IActionResult> Fetch()

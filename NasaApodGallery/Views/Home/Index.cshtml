@@ -4,7 +4,14 @@
 @foreach (var apod in Model)
 {
     <div>
-        <h3>@apod.Title (@apod.ApodDate)</h3>
-        <img src="@apod.Url" width="300" />
+        <h3>@apod.Title (@apod.ApodDate.ToString("yyyy-MM-dd"))</h3>
+        @if (apod.MediaType == "image")
+        {
+            <img src="@apod.Url" width="300"   />
+        }
+        else 
+        {
+            <p><a href="@apod.Url" target="_blank">Watch Video</a></p>
+        }
     </div>
 }
