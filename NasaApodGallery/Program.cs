@@ -4,6 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ApodRepository>();
 builder.Services.AddHttpClient<NasaApodService>();
 
 var app = builder.Build();
