@@ -12,36 +12,35 @@ namespace NasaApodGallery.Services
          _connectionString = configuration.GetConnectionString("DefaultConnection");
       }
 
-      public void SaveApod(ApodModel apod)
-      {
-         using var conn = new SqlConnection(_connectionString); 
-         conn.Open();        
-         
-          // Step 1: check if this date already exists
-            var checkCmd = new SqlCommand(
-                "SELECT COUNT(*) FROM ApodEntries WHERE ApodDate = @ApodDate", conn);
-            checkCmd.Parameters.AddWithValue("@ApodDate", apod.ApodDate);
+      public void SaveApod(ApodDto apod)
+{
+    using var conn = new SqlConnection(_connectionString);
+    conn.Open();
 
-            int existingCount = (int)checkCmd.ExecuteScalar();
+    // Step 1: check if this date already exists
+    var checkCmd = new SqlCommand(
+        "SELECT COUNT(*) FROM ApodEntries WHERE ApodDate = @ApodDate", conn);
+    checkCmd.Parameters.AddWithValue("@ApodDate", apod.Date);
 
-         if (existingCount > 0)
-         {
-            return; 
-         }
+    int existingCount = (int)checkCmd.ExecuteScalar();
 
-         var insertCmd = new SqlCommand(@"INSERT INTO ApodEntries (ApodDate, Title, Explanation, Url, MediaType, ServiceVersion, SavedAt) 
-         VALUES (@ApodDate, @Title, @Explanation, @Url, @MediaType, @ServiceVersion, @SavedAt)", conn);
+    if (existingCount > 0)
+    {
+        return;
+    }
 
-         insertCmd.Parameters.AddWithValue("@ApodDate", apod.ApodDate);
-         insertCmd.Parameters.AddWithValue("@Title", apod.Title);
-         insertCmd.Parameters.AddWithValue("@Explanation", apod.Explanation);
-         insertCmd.Parameters.AddWithValue("@Url", apod.Url);
-         insertCmd.Parameters.AddWithValue("@MediaType", apod.MediaType);
-         insertCmd.Parameters.AddWithValue("@ServiceVersion", apod.ServiceVersion);
-         insertCmd.Parameters.AddWithValue("@SavedAt", DateTime.UtcNow);
+    var insertCmd = new SqlCommand(@"INSERT INTO ApodEntries (ApodDate, Title, Explanation, Url, MediaType, ServiceVersion, SavedAt) 
+        VALUES (@ApodDate, @Title, @Explanation, @Url, @MediaType, @ServiceVersion, @SavedAt)", conn);
 
-         insertCmd.ExecuteNonQuery();
+    insertCmd.Parameters.AddWithValue("@ApodDate", apod.Date);
+    insertCmd.Parameters.AddWithValue("@Title", apod.Title);
+    insertCmd.Parameters.AddWithValue("@Explanation", apod.Explanation);
+    insertCmd.Parameters.AddWithValue("@Url", apod.Url);
+    insertCmd.Parameters.AddWithValue("@MediaType", apod.MediaType);
+    insertCmd.Parameters.AddWithValue("@ServiceVersion", (object)apod.ServiceVersion ?? DBNull.Value);
+    insertCmd.Parameters.AddWithValue("@SavedAt", DateTime.UtcNow);
 
-      }
+    insertCmd.ExecuteNonQuery();
+}
    }
 }

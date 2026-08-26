@@ -1,10 +1,10 @@
-﻿@model List<NasaApodGallery.Models.ApodDto>
+﻿@model List<NasaApodGallery.Models.ApodModel>
 
 <h1>NASA APOD Test  </h1>
 @foreach (var apod in Model)
 {
     <div>
-        <h3>@apod.Title (@apod.Date</h3>
+        <h3>@apod.Title (@apod.ApodDate)</h3>
         <img src="@apod.Url" width="300" />
     </div>
 }

@@ -14,7 +14,7 @@ namespace NasaApodGallery.Services
             _configuration = configuration;
         }
 
-        public async Task<List<ApodDto>> GetApodRangesAsync(string startDate,string endDate)
+        public async Task<List<ApodDto>> GetApodRangeAsync(string startDate,string endDate)
         {   var baseUrl = _configuration["NasaApi:BaseUrl"];
             var apiKey = _configuration["NasaApi:ApiKey"];
             var requestUrl = $"{baseUrl}?api_key={apiKey}&start_date={startDate}&end_date={endDate}";
@@ -23,8 +23,6 @@ namespace NasaApodGallery.Services
             response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsByteArrayAsync();
-
-            var content = await response.Content.ReadAsStringAsync();
 
             var apods = JsonSerializer.Deserialize<List<ApodDto>>(json, new JsonSerializerOptions
             {
