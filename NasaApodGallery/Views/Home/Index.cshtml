@@ -12,7 +12,9 @@
             <div class="card h-100 shadow-sm">
                 @if (apod.MediaType == "image")
                 {
-                    <img src="@apod.Url" class="card-img-top" alt="@apod.Title" style="height: 200px; object-fit: cover;" />
+                    <img src="@apod.Url" class="card-img-top" alt="@apod.Title"
+                         style="height: 200px; object-fit: cover;"
+                         onerror="this.onerror=null; this.src='/images/placeholder.png';" />
                 }
                 else
                 {
