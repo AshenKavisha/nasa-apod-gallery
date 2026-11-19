@@ -1,0 +1,109 @@
+@{
+    ViewData["Title"] = "How It Works";
+}
+
+<style>
+  .hw-page{--hw-bg:#080d20;--hw-panel:#111b34;--hw-line:#293957;--hw-muted:#aab9d4;--hw-blue:#6caaff;--hw-purple:#a88aff;color:#f4f7ff;background:var(--hw-bg);border-radius:22px;overflow:hidden;margin:8px 0 36px;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+  .hw-page *{box-sizing:border-box}.hw-page button{font:inherit}.hw-wrap{max-width:1100px;margin:auto;padding:0 24px}.hw-hero{position:relative;overflow:hidden;padding:80px 0 65px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#28386d 0%,#121a37 45%,#080d20 85%)}
+  .hw-stars{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(2px 2px at 12% 22%,#fff9 99%,transparent),radial-gradient(2px 2px at 76% 18%,#fff8 99%,transparent),radial-gradient(1px 1px at 28% 76%,#fff9 99%,transparent),radial-gradient(2px 2px at 91% 66%,#fff8 99%,transparent),radial-gradient(1px 1px at 61% 82%,#fff8 99%,transparent)}
+  .hw-pill{display:inline-block;border:1px solid #6379ac;border-radius:999px;padding:7px 16px;color:#c7d8ff;background:#ffffff0b;font-size:.8rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase}.hw-hero h1{font-weight:800;font-size:clamp(2.25rem,5vw,4rem);letter-spacing:-.045em;margin:20px auto 16px;max-width:850px;line-height:1.13}.hw-gradient{background:linear-gradient(90deg,#87c7ff,#d3a5ff);-webkit-background-clip:text;background-clip:text;color:transparent}.hw-hero p{max-width:660px;margin:0 auto;color:#c0cee5;font-size:1.06rem;line-height:1.75}.hw-hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}.hw-btn{border:1px solid #5b80c7;border-radius:12px;padding:12px 18px;background:#356ad1;color:white;text-decoration:none;font-weight:700;cursor:pointer}.hw-btn:hover,.hw-btn:focus-visible{background:#4c7ee1;color:white}.hw-btn-secondary{background:#182748}.hw-section{padding:60px 0;border-top:1px solid #1b2946}.hw-kicker{color:#8dbaff;font-size:.78rem;letter-spacing:.13em;font-weight:800;text-transform:uppercase}.hw-section h2{font-size:clamp(1.65rem,3vw,2.5rem);font-weight:800;letter-spacing:-.035em;margin:8px 0 12px}.hw-sub{color:var(--hw-muted);max-width:720px;line-height:1.65;margin-bottom:25px}.hw-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.hw-node{background:linear-gradient(160deg,#182747,#101a31);border:1px solid #31466c;border-radius:16px;padding:20px 12px;text-align:center;color:white;cursor:pointer;transition:transform .2s,border-color .2s,background .2s;min-height:150px}.hw-node:hover,.hw-node:focus-visible{transform:translateY(-4px);border-color:#86b5ff}.hw-node[aria-pressed="true"]{border-color:#8bc3ff;background:linear-gradient(160deg,#264b85,#15243e);box-shadow:0 0 0 2px #619cfa35}.hw-node .hw-emoji{display:block;font-size:2.1rem;margin-bottom:10px}.hw-node strong{display:block;font-size:.98rem}.hw-node small{display:block;color:#b3c5df;margin-top:7px;font-size:.78rem}.hw-detail{margin-top:18px;background:#111d37;border:1px solid #31466c;border-radius:16px;padding:24px;min-height:135px}.hw-detail h3{font-size:1.25rem;font-weight:800;margin:0 0 9px}.hw-detail p{margin:0;color:#c0cee6;line-height:1.7}.hw-detail code,.hw-page code{color:#b6d8ff;background:#273859;border-radius:5px;padding:2px 5px}.hw-path{display:flex;gap:7px;align-items:center;justify-content:center;flex-wrap:wrap;color:#90a8cb;font-size:.84rem;margin:15px 0}.hw-stepper{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-bottom:18px}.hw-step{border:1px solid #354a6f;background:#15223e;color:#dbe7ff;padding:13px 6px;border-radius:12px;cursor:pointer;font-size:.85rem;font-weight:700}.hw-step[aria-current="step"]{background:#356ad1;border-color:#8bbdff;color:white}.hw-progress{height:6px;border-radius:999px;background:#263650;margin:0 0 20px;overflow:hidden}.hw-progress span{display:block;background:linear-gradient(90deg,#58b9ff,#b28cff);height:100%;transition:width .25s}.hw-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px}.hw-controls button{background:#1b3157;border:1px solid #426397;border-radius:10px;color:#f1f6ff;padding:10px 16px;cursor:pointer}.hw-controls button:disabled{opacity:.35;cursor:not-allowed}.hw-tablist{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:16px}.hw-tab{padding:11px 18px;border-radius:10px;background:#172641;color:#cbdaf4;border:1px solid #334968;cursor:pointer;font-weight:700}.hw-tab[aria-selected="true"]{background:#356ad1;border-color:#85b7ff;color:white}.hw-code{background:#070e1d;border:1px solid #293957;border-radius:12px;padding:17px;overflow-x:auto;color:#c4e2ff;font-size:.9rem;line-height:1.7;margin-top:16px;white-space:pre-wrap}.hw-chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}.hw-chip{border:1px solid #344e77;border-radius:999px;background:#192b4c;color:#cbdfff;padding:7px 12px;font-size:.8rem}.hw-ci{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:24px 0}.hw-ci-item{border:1px solid #31466c;border-radius:14px;padding:18px 10px;background:#14213c;text-align:center;cursor:pointer;color:#f4f7ff}.hw-ci-item[aria-pressed="true"]{border-color:#8bc3ff;background:#234678}.hw-ci-item span{display:block;font-size:1.9rem;margin-bottom:8px}.hw-ci-item strong{font-size:.86rem}.hw-note{margin-top:17px;color:#b7c9e6;font-size:.85rem;border-left:3px solid #7eacff;padding:8px 14px;background:#18233a}.hw-footer{text-align:center;padding:35px;color:#aabbd8}.hw-footer a{color:#a6ccff}.hw-reveal{animation:hwFade .25s ease}@@keyframes hwFade{from{opacity:.5;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}@@media(max-width:760px){.hw-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hw-ci{grid-template-columns:repeat(2,minmax(0,1fr))}.hw-stepper{grid-template-columns:repeat(2,minmax(0,1fr))}.hw-section{padding:43px 0}.hw-hero{padding:58px 0 52px}.hw-wrap{padding:0 16px}}@@media(max-width:400px){.hw-grid{grid-template-columns:1fr 1fr}.hw-node{padding:14px 8px;min-height:130px}.hw-detail{padding:18px}}@@media(prefers-reduced-motion:reduce){.hw-page *{animation:none!important;transition:none!important}}
+</style>
+
+<div class="hw-page" id="howItWorksPage">
+  <section class="hw-hero">
+    <div class="hw-stars" aria-hidden="true"></div>
+    <div class="hw-wrap" style="position:relative">
+      <span class="hw-pill">Behind the scenes · NASA APOD Gallery</span>
+      <h1>From the cosmos to your screen. <span class="hw-gradient">Explore the journey.</span></h1>
+      <p>Discover how a NASA image travels through a .NET web application, gets saved to Azure SQL, and appears in the gallery. Click, explore, and learn at your own pace.</p>
+      <div class="hw-hero-actions"><a class="hw-btn" href="#hw-architecture">Explore architecture ↓</a><a class="hw-btn hw-btn-secondary" href="#hw-pipeline">Explore CI/CD ↓</a></div>
+    </div>
+  </section>
+
+  <section class="hw-section" id="hw-architecture"><div class="hw-wrap">
+    <div class="hw-kicker">01 / Architecture</div><h2>Four parts. One connected system.</h2>
+    <p class="hw-sub">Select a component to discover its job. The application keeps API requests, database operations, and the user interface separate.</p>
+    <div class="hw-grid" id="hw-architecture-buttons" role="group" aria-label="Architecture components">
+      <button type="button" class="hw-node" data-arch="0" aria-pressed="true"><span class="hw-emoji">🪐</span><strong>NASA APOD API</strong><small>External data source</small></button>
+      <button type="button" class="hw-node" data-arch="1" aria-pressed="false"><span class="hw-emoji">⚙️</span><strong>ASP.NET Core</strong><small>Controller + services</small></button>
+      <button type="button" class="hw-node" data-arch="2" aria-pressed="false"><span class="hw-emoji">🗄️</span><strong>Azure SQL</strong><small>Persistent storage</small></button>
+      <button type="button" class="hw-node" data-arch="3" aria-pressed="false"><span class="hw-emoji">🖼️</span><strong>Razor Gallery</strong><small>What visitors see</small></button>
+    </div>
+    <div class="hw-path" aria-label="Data flow">NASA API <span>→</span> .NET service <span>→</span> Azure SQL <span>→</span> MVC view</div>
+    <div class="hw-detail" id="hw-arch-detail" aria-live="polite"><h3>🪐 NASA APOD API</h3><p>NASA provides astronomy pictures, titles, dates, and explanations as JSON. Our service requests this data with <code>HttpClient</code>.</p></div>
+  </div></section>
+
+  <section class="hw-section" id="hw-journey"><div class="hw-wrap">
+    <div class="hw-kicker">02 / Data journey</div><h2>Follow one image, step by step.</h2><p class="hw-sub">Choose any stage, or use Next to walk through the entire data flow.</p>
+    <div class="hw-stepper" id="hw-journey-steps" aria-label="Data journey steps">
+      <button type="button" class="hw-step" data-step="0" aria-current="step">1 · Request</button><button type="button" class="hw-step" data-step="1">2 · JSON</button><button type="button" class="hw-step" data-step="2">3 · Validate</button><button type="button" class="hw-step" data-step="3">4 · Save</button><button type="button" class="hw-step" data-step="4">5 · Display</button>
+    </div>
+    <div class="hw-progress" aria-hidden="true"><span id="hw-progress-bar" style="width:20%"></span></div>
+    <div class="hw-detail" id="hw-journey-detail" aria-live="polite"><h3>1. Request data from NASA</h3><p><code>NasaApodService</code> sends an HTTP GET request to NASA's APOD endpoint for a date range.</p></div>
+    <div class="hw-controls"><button type="button" id="hw-prev" disabled>← Previous</button><span id="hw-counter" aria-live="polite">Step 1 of 5</span><button type="button" id="hw-next">Next →</button></div>
+  </div></section>
+
+  <section class="hw-section" id="hw-mvc"><div class="hw-wrap">
+    <div class="hw-kicker">03 / .NET explained</div><h2>Meet MVC: Model, View, Controller.</h2><p class="hw-sub">ASP.NET Core MVC separates data, presentation, and request handling. Click each role to see how it appears in this project.</p>
+    <div class="hw-tablist" role="tablist" aria-label="MVC roles" id="hw-mvc-tabs">
+      <button type="button" class="hw-tab" role="tab" data-mvc="0" aria-selected="true">Model</button><button type="button" class="hw-tab" role="tab" data-mvc="1" aria-selected="false">View</button><button type="button" class="hw-tab" role="tab" data-mvc="2" aria-selected="false">Controller</button>
+    </div>
+    <div class="hw-detail" id="hw-mvc-detail" role="tabpanel" aria-live="polite"><h3>📦 Model — the data</h3><p><code>ApodDto.cs</code> represents NASA's JSON fields. <code>ApodModel.cs</code> represents saved database entries.</p><div class="hw-code">public class ApodModel<br>{<br>    public string Title { get; set; }<br>}</div></div>
+    <div class="hw-chips"><span class="hw-chip">C# / .NET 10</span><span class="hw-chip">Razor views</span><span class="hw-chip">Dependency injection</span><span class="hw-chip">HttpClient</span><span class="hw-chip">ADO.NET / SqlClient</span><span class="hw-chip">Bootstrap</span></div>
+  </div></section>
+
+  <section class="hw-section" id="hw-pipeline"><div class="hw-wrap">
+    <div class="hw-kicker">04 / DevOps</div><h2>How a CI/CD pipeline delivers updates.</h2><p class="hw-sub">This is the GitHub Actions workflow we can configure for this project. Click each stage to learn what happens.</p>
+    <div class="hw-ci" id="hw-ci-buttons" role="group" aria-label="CI CD pipeline stages">
+      <button type="button" class="hw-ci-item" data-ci="0" aria-pressed="true"><span>💻</span><strong>Write code</strong></button><button type="button" class="hw-ci-item" data-ci="1" aria-pressed="false"><span>🌿</span><strong>Push to GitHub</strong></button><button type="button" class="hw-ci-item" data-ci="2" aria-pressed="false"><span>🧪</span><strong>Build &amp; test</strong></button><button type="button" class="hw-ci-item" data-ci="3" aria-pressed="false"><span>☁️</span><strong>Deploy to Azure</strong></button><button type="button" class="hw-ci-item" data-ci="4" aria-pressed="false"><span>🚀</span><strong>Live update</strong></button>
+    </div>
+    <div class="hw-detail" id="hw-ci-detail" aria-live="polite"><h3>💻 1. Write code</h3><p>A developer updates C#, Razor, or CSS in VS Code and checks that the application works locally.</p></div>
+    <div class="hw-note"><strong>Important:</strong> This section illustrates a proposed automated pipeline. It does not mean CI/CD has already been enabled for this deployment.</div>
+  </div></section>
+
+  <section class="hw-section"><div class="hw-wrap"><div class="hw-kicker">05 / Reliability</div><h2>Built with care for data and users.</h2><div class="hw-grid">
+    <div class="hw-detail" style="margin:0"><h3>🔐 SQL safety</h3><p>Parameterized queries keep input values separate from SQL commands.</p></div>
+    <div class="hw-detail" style="margin:0"><h3>📅 Unique dates</h3><p>A unique constraint prevents duplicate APOD dates in the database.</p></div>
+    <div class="hw-detail" style="margin:0"><h3>🧩 Clear layers</h3><p>Controllers coordinate work; services fetch; repositories store.</p></div>
+    <div class="hw-detail" style="margin:0"><h3>📱 Responsive UI</h3><p>Bootstrap cards adapt to phones, tablets, and desktops.</p></div>
+  </div></div></section>
+  <div class="hw-footer">Made to explore the technology behind NASA APOD Gallery · <a asp-controller="Home" asp-action="Index">Back to gallery ↑</a></div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  const root=document.getElementById('howItWorksPage');if(!root)return;
+  const arch=[
+    ['🪐 NASA APOD API','NASA provides astronomy pictures, titles, dates, and explanations as JSON. Our service requests this data using <code>HttpClient</code>.'],
+    ['⚙️ ASP.NET Core MVC','<code>HomeController</code> coordinates the request. <code>NasaApodService</code> fetches and validates API data, while <code>ApodRepository</code> handles SQL operations.'],
+    ['🗄️ Azure SQL Database','The repository saves and retrieves APOD records using ADO.NET parameterized SQL commands. A <code>UNIQUE</code> constraint on <code>ApodDate</code> protects against duplicate dates.'],
+    ['🖼️ Razor + Bootstrap Gallery','The <code>Index</code> action reads saved records and passes them to <code>Index.cshtml</code>. Razor renders responsive cards with image and video support.']
+  ];
+  const journey=[
+    ['1. Request data from NASA','<code>NasaApodService</code> sends an HTTP GET request to NASA\'s APOD endpoint for a date range.'],
+    ['2. Convert JSON into C# objects','The API returns JSON. <code>JsonSerializer</code> converts it into a <code>List&lt;ApodDto&gt;</code> so the application can work with typed data.'],
+    ['3. Validate the response','The service checks the returned entries before attempting to save them. Invalid entries are skipped.'],
+    ['4. Store records in Azure SQL','<code>ApodRepository.SaveApod()</code> checks for an existing date, then inserts new records using parameterized ADO.NET commands.'],
+    ['5. Display the gallery','<code>HomeController.Index()</code> reads stored records and passes them to the Razor view. Bootstrap displays them as responsive cards.']
+  ];
+  const mvc=[
+    ['📦 Model — the data','<code>ApodDto.cs</code> represents NASA API data. <code>ApodModel.cs</code> represents saved database entries.','public class ApodModel\n{\n    public string Title { get; set; }\n}'],
+    ['🎨 View — the interface','<code>Views/Home/Index.cshtml</code> uses Razor and Bootstrap to turn model data into cards that visitors can see.','@@model List&lt;NasaApodGallery.Models.ApodModel&gt;\n@@foreach (var apod in Model)\n{\n    &lt;h3&gt;@@apod.Title&lt;/h3&gt;\n}'],
+    ['🎛️ Controller — the coordinator','<code>HomeController</code> handles browser requests. <code>Index()</code> loads saved records; <code>Fetch()</code> requests and saves NASA data.','public IActionResult Index()\n{\n    var apods = _apodRepository.GetAllApods();\n    return View(apods);\n}']
+  ];
+  const ci=[
+    ['💻 1. Write code','A developer updates C#, Razor, or CSS in VS Code and checks that the application works locally.'],
+    ['🌿 2. Push to GitHub','A commit is pushed to the chosen repository branch. A configured GitHub Actions workflow can start automatically.'],
+    ['🧪 3. Build and test','GitHub Actions restores .NET dependencies, builds the project, and runs automated tests if the repository contains them.'],
+    ['☁️ 4. Deploy to Azure','After a successful build, the workflow publishes the application and deploys it to Azure App Service using configured deployment credentials or identity.'],
+    ['🚀 5. Visitors see the update','Azure App Service serves the new application version. Azure SQL continues to store the data separately from the web app deployment.']
+  ];
+  function detail(el,title,description,code){el.innerHTML='<h3>'+title+'</h3><p>'+description+'</p>'+(code?'<div class="hw-code">'+code+'</div>':'');el.classList.remove('hw-reveal');void el.offsetWidth;el.classList.add('hw-reveal');}
+  root.querySelectorAll('[data-arch]').forEach(btn=>btn.addEventListener('click',()=>{root.querySelectorAll('[data-arch]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));const item=arch[Number(btn.dataset.arch)];detail(root.querySelector('#hw-arch-detail'),item[0],item[1]);}));
+  let step=0;function renderStep(){root.querySelectorAll('[data-step]').forEach(b=>{if(Number(b.dataset.step)===step)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});detail(root.querySelector('#hw-journey-detail'),journey[step][0],journey[step][1]);root.querySelector('#hw-progress-bar').style.width=((step+1)*20)+'%';root.querySelector('#hw-prev').disabled=step===0;root.querySelector('#hw-next').disabled=step===4;root.querySelector('#hw-counter').textContent='Step '+(step+1)+' of 5';}
+  root.querySelectorAll('[data-step]').forEach(b=>b.addEventListener('click',()=>{step=Number(b.dataset.step);renderStep();}));root.querySelector('#hw-prev').addEventListener('click',()=>{if(step>0){step--;renderStep();}});root.querySelector('#hw-next').addEventListener('click',()=>{if(step<4){step++;renderStep();}});
+  root.querySelectorAll('[data-mvc]').forEach(btn=>btn.addEventListener('click',()=>{root.querySelectorAll('[data-mvc]').forEach(b=>b.setAttribute('aria-selected',String(b===btn)));const item=mvc[Number(btn.dataset.mvc)];detail(root.querySelector('#hw-mvc-detail'),item[0],item[1],item[2]);}));
+  root.querySelectorAll('[data-ci]').forEach(btn=>btn.addEventListener('click',()=>{root.querySelectorAll('[data-ci]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));const item=ci[Number(btn.dataset.ci)];detail(root.querySelector('#hw-ci-detail'),item[0],item[1]);}));
+})();
+</script>

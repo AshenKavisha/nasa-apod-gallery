@@ -14,6 +14,11 @@ public class HomeController : Controller
         _apodRepository = apodRepository;
     }
 
+    public IActionResult HowItWorks()
+   {
+    return View();
+}
+
     public IActionResult Index()
     {
         var apods = _apodRepository.GetAllApods();
