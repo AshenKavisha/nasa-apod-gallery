@@ -36,7 +36,7 @@ The project has been deployed using the following Microsoft Azure services:
 
 ### NASA APOD Gallery
 
-![NASA APOD Gallery](screenshots/gallery.png)
+![NASA APOD Gallery](screenshots/gallery.jpeg)
 
 ### Responsive Mobile View
 
